@@ -1,7 +1,9 @@
 NAME = exe
 MAIN_SRC = main.c
 
-SRCS = push_swap.c
+SRCS = push_swap.c \
+	swap.c \
+	push.c \
 
 OBJS = $(SRCS:.c=.o)
 

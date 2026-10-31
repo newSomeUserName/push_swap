@@ -4,6 +4,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -13,6 +14,9 @@ typedef struct s_stack
 
 }	t_stack;
 
-void prints();
+t_stack	*parse(int argc, char *argv[]);
+void sa(t_stack **stack);
+void sb(t_stack **stack);
+void ss(t_stack **stack_a, t_stack **stack_b);
 
 #endif
