@@ -18,5 +18,5 @@ t_stack	*parse(int argc, char *argv[]);
 void sa(t_stack **stack);
 void sb(t_stack **stack);
 void ss(t_stack **stack_a, t_stack **stack_b);
-
+void pb(t_stack **stack_a, t_stack **stack_b);
 #endif
