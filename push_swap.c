@@ -1,63 +1,54 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlucotte <jlucotte@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/30 18:08:04 by jlucotte          #+#    #+#             */
+/*   Updated: 2026/11/06 17:34:36 by jlucotte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *create_node(int value)
+int	is_strategy(char *s, char *strategy)
 {
-	t_stack *stack_node;
+	return (ft_strncmp(s, strategy, ft_strlen(strategy) + 1) == 0);
+}
 
-	stack_node = malloc(sizeof(t_stack));
-	if (!stack_node)
-		return (NULL);
-	stack_node->value = value;
-	stack_node->next = NULL;
-	stack_node->prev = NULL;
-	return (stack_node);
-}
-void *add_back(t_stack **head, t_stack *node)
+static char	*get_strategy(char *strategy_s)
 {
-	node->prev = *head;
-	(*head)->next = node;
-	*head = node;
-}
-void *clean_stack(t_stack **head)
-{
-	t_stack *prev;
-	while (*head)
-	{
-		prev = (*head)->prev;
-		free(*head);
-		*head = prev;
-	}
-	*head = NULL;
+	if (is_strategy(strategy_s, STRATEGY_COMPLEX))
+		return (STRATEGY_COMPLEX);
+	if (is_strategy(strategy_s, STRATEGY_MEDIUM))
+		return (STRATEGY_MEDIUM);
+	if (is_strategy(strategy_s, STRATEGY_SIMPLE))
+		return (STRATEGY_SIMPLE);
+	if (is_strategy(strategy_s, STRATEGY_ADAPTIVE))
+		return (STRATEGY_ADAPTIVE);
 	return (NULL);
 }
 
-t_stack	*parse(int argc, char *argv[])
+int	push_swap(int argc, char **argv)
 {
-	int	counter;
-	t_stack *node;
-	t_stack *head;
+	t_stack	*stack_a_head;
+	char	*strategy;
 
-	counter = 1;
 	if (argc < 2)
-		return (NULL);
-	while (counter < argc)
+		return (0);
+	strategy = get_strategy(*(argv + 1));
+	if (strategy)
 	{
-		if (counter == 1)
-		{
-			head = create_node(atoi(argv[counter]));
-			if (!head)
-				return (NULL);		
-		}
-		else
-		{
-			node = create_node(atoi(argv[counter]));
-			if (!node)
-				return (clean_stack(&head));
-			add_back(&head, node);
-		}
-		counter++;
+		argv++;
+		argc--;
 	}
-	return (head);
+	else
+		strategy = STRATEGY_ADAPTIVE;
+	if (argc < 2)
+		return (0);
+	stack_a_head = parser(argc, argv + 1);
+	strat_picker(strategy, &stack_a_head);
+	clean_stack(&stack_a_head);
+	return (0);
 }
