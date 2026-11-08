@@ -34,14 +34,14 @@ int	swap_logic(t_stack **list_head)
 int	sa(t_stack **list_head)
 {
 	if (swap_logic(list_head))
-		return (ft_printf("sa\n"), 1);
+		return (ft_printf("sa\n"), bench_count(OP_SA), 1);
 	return (0);
 }
 
 int	sb(t_stack **list_head)
 {
 	if (swap_logic(list_head))
-		return (ft_printf("sb\n"), 1);
+		return (ft_printf("sb\n"), bench_count(OP_SB), 1);
 	return (0);
 }
 
@@ -53,6 +53,6 @@ int	ss(t_stack **a_head, t_stack **b_head)
 	done_a = swap_logic(a_head);
 	done_b = swap_logic(b_head);
 	if (done_a || done_b)
-		return (ft_printf("ss\n"), 1);
+		return (ft_printf("ss\n"), bench_count(OP_SS), 1);
 	return (0);
 }

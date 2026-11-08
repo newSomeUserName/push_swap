@@ -47,6 +47,10 @@ void	adaptive_sort(t_stack **a_head, t_stack **b_head)
 	disorder = compute_disorder(*a_head);
 	if (disorder == 0.0)
 		return ;
+	if (disorder >= DISORDER_HIGH)
+		bench_set_strategy(NAME_ADAPT_HIGH);
+	else if (disorder >= DISORDER_LOW)
+		bench_set_strategy(NAME_ADAPT_MID);
 	if (count_node(*a_head) <= 5)
 		small_sort(a_head, b_head);
 	else if (disorder < DISORDER_LOW)

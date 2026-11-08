@@ -24,6 +24,37 @@
 # define STRATEGY_MEDIUM "--medium"
 # define STRATEGY_COMPLEX "--complex"
 # define STRATEGY_ADAPTIVE "--adaptive"
+# define FLAG_BENCH "--bench"
+
+# define NAME_SIMPLE "Simple / O(n^2)"
+# define NAME_MEDIUM "Medium / O(n√n)"
+# define NAME_COMPLEX "Complex / O(n log n)"
+# define NAME_ADAPT_LOW "Adaptive / O(n^2)"
+# define NAME_ADAPT_MID "Adaptive / O(n√n)"
+# define NAME_ADAPT_HIGH "Adaptive / O(n log n)"
+
+typedef enum e_op
+{
+	OP_SA,
+	OP_SB,
+	OP_SS,
+	OP_PA,
+	OP_PB,
+	OP_RA,
+	OP_RB,
+	OP_RR,
+	OP_RRA,
+	OP_RRB,
+	OP_RRR,
+	OP_COUNT
+}	t_op;
+
+typedef struct s_bench
+{
+	int		counts[OP_COUNT];
+	int		total;
+	char	*strategy;
+}	t_bench;
 
 typedef struct s_stack
 {
@@ -96,4 +127,10 @@ void	complex_sort(t_stack **a_head, t_stack **b_head);
 // adaptive algo
 double	compute_disorder(t_stack *a_head);
 void	adaptive_sort(t_stack **a_head, t_stack **b_head);
+
+// bench
+t_bench	*get_bench(void);
+void	bench_count(int op);
+void	bench_set_strategy(char *name);
+void	print_bench(double disorder);
 #endif

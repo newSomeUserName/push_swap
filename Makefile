@@ -16,6 +16,7 @@ NAME_BONUS	= checker
 
 # shared by push_swap and checker (no main here)
 COMMON_SRCS	=	push_swap.c		\
+				bench.c			\
 				strat_picker.c	\
 				parser.c		\
 				list_utils.c	\

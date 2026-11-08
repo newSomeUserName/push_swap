@@ -17,6 +17,14 @@ void	strat_picker(char *strat, t_stack **a_head)
 	t_stack	*b_stack;
 
 	b_stack = NULL;
+	if (is_strategy(strat, STRATEGY_SIMPLE))
+		bench_set_strategy(NAME_SIMPLE);
+	else if (is_strategy(strat, STRATEGY_MEDIUM))
+		bench_set_strategy(NAME_MEDIUM);
+	else if (is_strategy(strat, STRATEGY_COMPLEX))
+		bench_set_strategy(NAME_COMPLEX);
+	else
+		bench_set_strategy(NAME_ADAPT_LOW);
 	if (is_sorted(*a_head))
 		return ;
 	if (is_strategy(strat, STRATEGY_SIMPLE))

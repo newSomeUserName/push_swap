@@ -32,14 +32,14 @@ static int	push(t_stack **dst, t_stack **src)
 int	pa(t_stack **a_head, t_stack **b_head)
 {
 	if (push(a_head, b_head))
-		return (ft_printf("pa\n"), 1);
+		return (ft_printf("pa\n"), bench_count(OP_PA), 1);
 	return (0);
 }
 
 int	pb(t_stack **a_head, t_stack **b_head)
 {
 	if (push(b_head, a_head))
-		return (ft_printf("pb\n"), 1);
+		return (ft_printf("pb\n"), bench_count(OP_PB), 1);
 	return (0);
 }
 

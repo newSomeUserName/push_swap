@@ -32,14 +32,14 @@ int	r_logic(t_stack **stack_head)
 int	ra(t_stack **stack_head)
 {
 	if (r_logic(stack_head))
-		return (ft_printf("ra\n"), 1);
+		return (ft_printf("ra\n"), bench_count(OP_RA), 1);
 	return (0);
 }
 
 int	rb(t_stack **stack_head)
 {
 	if (r_logic(stack_head))
-		return (ft_printf("rb\n"), 1);
+		return (ft_printf("rb\n"), bench_count(OP_RB), 1);
 	return (0);
 }
 
@@ -51,6 +51,6 @@ int	rr(t_stack **a_head, t_stack **b_head)
 	done_a = r_logic(a_head);
 	done_b = r_logic(b_head);
 	if (done_a || done_b)
-		return (ft_printf("rr\n"), 1);
+		return (ft_printf("rr\n"), bench_count(OP_RR), 1);
 	return (0);
 }
